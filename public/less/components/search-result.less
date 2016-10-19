@@ -1,0 +1,53 @@
+.search-result {
+
+  &__details {
+
+  }
+
+  &__view-pills {
+
+  }
+
+  &__view-pills .event_response {
+    float: right;
+    padding-right: 2%;
+
+    .nav.nav-pills > li > a {
+      padding: 10px 15px;
+
+      @media (min-width: 992px) {
+        padding: 1em 3em;
+      }
+
+      @media (min-width: 768px) {
+        padding: 1em 3.75em;
+      }
+    }
+  }
+
+      @media screen and (max-width: 550px) {
+        float: none;
+        padding-right: 0;
+        .nav.nav-pills > li {
+          border-radius: 10px;
+          width: 50%;
+          padding-right: 0px;
+          padding-left: 0px;
+          &:first-child {
+            border-radius: 10px 0 0 10px;
+            a {
+	            border-radius: 10px 0 0 10px;
+
+            }
+          }
+          &:last-child {
+            border-radius: 0 10px 10px 0;
+            a {
+	            border-radius: 0 10px 10px 0;
+            }
+          }
+        }
+
+      }
+
+}

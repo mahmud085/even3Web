@@ -1,0 +1,189 @@
+<div cg-busy="businessDetailPromise">
+    <section class="heading container">
+        <div class="heading-card col-xs-12 col-sm-12 col-md-9 col-lg-9 ">
+            <div class="event_img" ng-style="{'background-image': getBackgroundImage(), 'height': setStyle()}" set-height>
+            </div>
+            <div class="heading-card-block">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <div class="contact">
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+                                <div class="pic">
+                                    <img class="avatar img-circle" ng-src="{{baseurl + businessDetail.account.UserPicture}}" err-src="images/empty-avatar.png"
+                                    />
+                                    <p class="title-small"><strong>{{businessDetail.Name}}</strong></p>
+                                </div>
+                                <div class="contact-name">
+                                    <span>contact</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+                                <div class="info">
+                                    <p class="title"><strong>{{businessDetail.Name}}</strong></p>
+                                    <p class="location"><img src="images/pin.png" alt="">{{businessDetail.Address}}</p>
+                                    <p class="email"> <img src="images/email2.png" alt="">{{contact}} </p>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 rating-big" cg-busy="ratePromise">
+                        <div class="rating">
+                            <span class="float-left name">Rating:</span>
+                            <ul class="float-left" tooltip-placement="top" uib-tooltip="{{ratingNum}}">
+                                <li ng-repeat="i in items | limitTo: ratingNum">
+                                    <img class="thumb" src="images/fullstar.png" alt="">
+                                </li>
+                                <li ng-repeat="i in items | limitTo: 5 - ratingNum ">
+                                    <img class="thumb" src="images/emptystar.png" alt="">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="rating" ng-show="showRate">
+                            <ul class="float-left">
+                                <li ng-repeat="i in items | limitTo: fullStar">
+                                    <img class="thumb" src="images/fullstar.png" alt="" ng-click="fullStarRate($index + 1)">
+                                </li>
+                                <li ng-repeat="i in items | limitTo: emptyStar">
+                                    <img class="thumb" src="images/emptystar.png" alt="" ng-click="emptyStarRate($index + 1)">
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary" style="margin-left: 30px" ng-click="postRate()">Rate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 rating-small" cg-busy="ratePromise">
+            <div class="rating">
+                <span class="float-left name">Rating:</span>
+                <ul class="float-left" tooltip-placement="top" uib-tooltip="{{ratingNum}}">
+                    <li ng-repeat="i in items | limitTo: ratingNum">
+                        <img class="thumb" src="images/fullstar.png" alt="">
+                    </li>
+                    <li ng-repeat="i in items | limitTo: 5 - ratingNum ">
+                        <img class="thumb" src="images/emptystar.png" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="rating" ng-show="showRate">
+                <ul class="float-left">
+                    <li ng-repeat="i in items | limitTo: fullStar">
+                        <img class="thumb" src="images/fullstar.png" alt="" ng-click="fullStarRate($index + 1)">
+                    </li>
+                    <li ng-repeat="i in items | limitTo: emptyStar">
+                        <img class="thumb" src="images/emptystar.png" alt="" ng-click="emptyStarRate($index + 1)">
+                    </li>
+                </ul>
+                <button class="btn btn-primary" style="margin-left: 30px" ng-click="postRate()">Rate</button>
+            </div>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-12 price-mobile">
+            <div class="schedule">
+                <h4>Price</h4>
+                <div ng-hide="serviceList.length">
+                    <strong>No Services to Show</strong>
+                </div>
+                <table class="services-table table table-hover table-condensed">
+
+                    <tbody>
+                        <tr ng-repeat="service in serviceList">
+                            <td>{{service.Name}} - {{service.currencySymbol}} {{service.Price | number:2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 event_sidebar">
+            <div class="sbox gmaps">
+                <h4>Location</h4>
+                <div>
+                    <iframe width="100%" height="150px" frameborder="0" style="border:0" ng-src="{{geoSrc}}" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="sbox price_contact" ng-hide="businessDetail.ownBusiness">
+                <form>
+                    <input type="submit" id="submit" name="submit" value="HIRE" ng-click="hireMe()" />
+                </form>
+            </div>
+            <div class="sbox price_contact" ng-show="businessDetail.ownBusiness">
+                <form>
+                    <input type="submit" id="submit" name="submit" value="DELETE SERVICE" ng-click="deleteService()" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="event_container">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 event_details">
+                    <div class="description">
+                        <h4>Description</h4>
+                        <p>{{businessDetail.Description}}</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 price-mobile">
+                    <div class="schedule">
+                        <h4>Price</h4>
+                        <div ng-hide="serviceList.length">
+                            <strong>No Services to Show</strong>
+                        </div>
+                        <table class="services-table table table-hover table-condensed">
+
+                            <tbody>
+                                <tr ng-repeat="service in serviceList">
+                                    <td>{{service.Name}} - {{ service.currencySymbol}} {{service.Price | number:2}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 event_details">
+                    <div class="comments">
+                        <h4>Comments ({{commentList.length}})</h4>
+
+                        <div class="comment" ng-show="loggedIn">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                <img class="thumb img-circle" ng-src="{{baseurl + userAccInfo.UserPicture}}" err-src="images/empty-avatar.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                <div class="post_comment">
+                                    <form id="commentForm">
+                                        <textarea placeholder="Write your comment here" ng-model="CommentBody"></textarea>
+                                        <input type="button" class="submit_comment" name="submit" value="Submit Comment" ng-click="addComment(CommentBody)" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="noMatch" ng-hide="commentList.length">
+                            <Span><h3>No Comments to Show</h3></Span>
+                        </div>
+                        <div ng-show="commentList.length" ng-repeat="comment in commentList">
+                            <div class="comment" ng-show="commentList.length">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                    <img class="thumb img-circle" ng-src="{{baseurl + comment.account.UserPicture}}" err-src="images/empty-avatar.png" alt="">
+                                    <p class="small-name"><span class="name">{{comment.account.username}}</span><span class="time"> - {{comment.Time | date}}</span></p>
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                    <div class="posted_comment">
+                                        <p class="big-name"><span class="name">{{comment.account.username}}</span> - <span class="time">{{comment.Time | date}}</span></p>
+                                        <p class="text">{{comment.CommentBody}}</p>
+                                        <ul class="actions">
+                                            <li><img src="images/reply.png" alt="">Reply</li>
+                                            <!--<li><img src="images/agree.png" alt="">Agree</li>
+                                            <li><img src="images/disagree.png" alt="">Disagree</li>-->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,146 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>Cart</h1>
+                <p class="greyt">It only takes 2 minutes and it’s FREE for life!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup">
+    <div class="container">
+        <div cg-busy="paymentPromise">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <form id="cartForm" novalidate>
+                    <table cellspacing="2" cellpadding="0" border="0" class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label>Ticket</label>
+                                </th>
+                                <th align="center">
+                                    <label>Available</label>
+                                </th>
+                                <th align="center">
+                                    <label>Quantity</label>
+                                </th>
+                                <th align="center">
+                                    <label>Price</label>
+                                </th>
+                                <th align="center">
+                                    <label>Total</label>
+                                </th>
+                                <th align="center"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="ticket in ticketList track by $index">
+                                <td>Ticket #{{$index + 1}}</td>
+                                <td>{{ticket.Available}}</td>
+                                <td>
+                                    <input type="text" name="" ng-model="ticket.quantity" min="0" ng-change="calculatePrice($index, ticket)" maxlength="3" size="4">
+                                </td>
+                                <td>{{ticket.Price}} {{ticket.currency}}</td>
+                                <td>{{ticket.total}}</td> {{ticket.currency}}
+                                <td>
+                                    <img title="Delete" src="images/delete.png" ng-click="deleteTicket($index)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Total Price</label></td>
+							    <td></td>	
+                                <td></td>									
+								<td><label>{{totalPrice}} {{currency}}</label></td> 
+								<td></td>
+							</tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="showErr" class="alert alert-danger"><strong>Can not put negetive value</strong></div>
+
+                    <h3>Payment details</h3>
+                    <div class="payment_details">
+                        <div class="input_container select_card">
+                            <label>Choose card:</label>
+                            <br/>
+                            <select style="width:92%;" ng-model="cardId" ng-options="card.id as card.Name for card in cardList" ng-change="selectCard(cardId)" >
+                                <option value="" disabled selected>Choose Your Card</option>
+                            </select>
+                            <a ui-sref="Main.Profile.PaymentMethod" style="height:40px;" class="btn btn-default btn-lg" tooltip-placement="top" uib-tooltip="Add New Card">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="name">Name on Card:</label>
+                                <br/>
+                                <input type="text" name="name" ng-model="selectedCard.Name" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="card_number">Card Number:</label>
+                                <br/>
+                                <input type="text" name="card_number" ng-model="selectedCardNumber" disabled/>
+                            </div> 
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="expiry">Expiry Date:</label>
+                                <br/>
+                                <input type="text" name="expiry" ng-model="selectedCard.ExpiryDate" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="code">Security Code:</label>
+                                <br/>
+                                <input type="text" name="code" ng-model="selectedCard.Ccv" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="address">Adress on Card:</label>
+                                <br/>
+                                <input type="text" name="address" ng-model="selectedCard.BillingAddress" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="city">City:</label>
+                                <br/>
+                                <input type="text" name="city" ng-model="selectedCard.City" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="zip_code">Post/ZipCode:</label>
+                                <br/>
+                                <input type="text" name="zip_code" ng-model="selectedCard.Number" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input_container">
+                                <label for="country">Country:</label>
+                                <br/>
+                                <input type="text" name="country" ng-model="selectedCard.Country" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="input_container">
+                        <input type="submit" id="submit" name="submit" value="PAY" ng-click="pay(selectedCard)"/>
+                    </div>
+                    <div ng-show="showCardError" class="alert alert-danger">{{cardErrMsg}}</div>
+
+                    <div class="xl-space"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

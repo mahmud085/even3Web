@@ -1,0 +1,14 @@
+<div class="notification-block">
+    <div class="content-block">
+        <div class="jumbotron-block">
+            <label>Thanks for joining Even3. An activation link has been sent to your email. Please activate your account to use Even3.</label> 
+        </div>
+        <div class="event-btn-group">
+            <a class="btn btn-primary btn-invite" ng-click="resend()">Resend</a>
+            <a class="btn btn-primary btn-services" ui-sref="Main.Home.Event">To Home</a> 
+        </div>
+        <div class="alert alert-success text-center" ng-show="alert">
+            <strong>{{alertMsg}}</strong>
+        </div>    
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="rsvp-block col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <img style="outline:none;" src="images/close.png" id="close_image" alt=""  ng-click="cancel()"/>
+    <div class="well well-lg" style="background-color:#fff">
+        <div cg-busy="rsvpPromise">
+            <div style="margin:20px; padding:20px">
+                <h4 style="text-align:center;">Choose RSVP of {{event.Name}}</h4>
+                <div class="event-btn-group">
+                    <a class="btn btn-primary btn-invite" ng-click="setRSVP(2)">Going</a>
+                    <a class="btn btn-primary btn-services" ng-click="setRSVP(1)">Ignore</a> 
+                </div>
+            </div>
+            <div ng-show="showMsg" style="text-align:center;" class="alert alert-success">Your RSVP is successfully saved!!</div>
+        </div>    
+    </div>
+</div>     

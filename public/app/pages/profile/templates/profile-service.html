@@ -1,0 +1,121 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>My Profile</h1>
+                <p class="greyt">The place where you can edit settings, activities, tickets and history. Basically all you need to know about...you!</p>
+            </div>
+        </div>
+    </div>
+</section> 
+
+<section class="profile_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <side-nav></side-nav>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div>
+                    <div id="services-tab" class="tab-pane">
+                        <h4>Services</h4>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="event_response service">
+                                    <ul class="nav nav-pills">
+                                        <li class="active first" ng-click="service = 'saved'"><a data-toggle="tab" href="">Saved Services</a></li>
+                                        <li class="last" ng-click="service = 'my'"><a data-toggle="tab" href="">My services</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div cg-busy="saveBizPromise">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div>
+                                    <div id="service-going-tab" class="tab-pane" ng-show="service === 'saved'">
+                                        <div ng-hide="savedServiceList.length" style="text-align:center">
+                                            <p><h3>No Services to Show</h3></p>
+                                        </div>
+                                        <div ng-show="savedServiceList.length">
+                                            <p class="title">Your Saved Services: </p>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-repeat="savedService in savedServiceList">
+                                                <div class="event_box_container">
+                                                    <a ui-sref="Main.Business.Detail.Info({id: savedService.business.id})">
+                                                        <img class="event_img" ng-src="{{baseurl + savedService.business.BusinessPicture}}" err-src="images/events.png" width="255px" height="160px"/>
+                                                        <img class="avatar img-circle" ng-src="{{baseurl + savedService.account.UserPicture}}" err-src="images/empty-avatar.png"/>
+                        
+
+                                                        <div class="event_description" style="height: 180px;overflow: hidden">
+                                                            <ul>
+                                                                <!--<li><img src="images/date.png" alt=""> 20 May 2016</li>-->
+                                                                <li><img src="images/pin.png" alt="">{{savedService.business.Address}}</li>
+                                                            </ul>
+
+                                                            <p class="title" ng-bind="savedService.business.Name"></p>
+                                                            <p ng-bind="savedService.business.Description"></p>
+                                                        </div>
+                                                    </a>
+                                                    <div class="response">
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 share" ng-click="openShareModal(weburl + $state.href('Main.Business.Detail.Info', {id: savedService.id}), 'Share This Service')">
+                                                            Share
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rsvp disableButton">
+                                                            SAVED
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="service-hosting-tab" class="tab-pane" ng-show="service === 'my' ">
+                                        <div ng-hide="myServiceList.length" style="text-align:center">
+                                            <p><h3>No Services to Show</h3></p>
+                                        </div>
+                                        <div ng-show="myServiceList.length">
+                                        <p class="title">You hosted these services: </p>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-repeat="myService in myServiceList">
+                                                <div class="event_box_container">
+                                                    <a ui-sref="Main.Business.Detail.Info({id: myService.id})">
+                                                    <img class="event_img" ng-src="{{baseurl + myService.BusinessPicture}}" err-src="images/events.png" width="255px" height="160px"/>
+                                                    <img class="avatar img-circle" ng-src="{{baseurl + myService.account.UserPicture}}" err-src="images/empty-avatar.png" />
+                    
+                                                    <div class="event_description" style="height: 180px;overflow: hidden">
+                                                        <ul>
+                                                            <!--<li><img src="images/date.png" alt=""> 20 May 2016</li>-->
+                                                            <li><img src="images/pin.png" alt=""> {{myService.Address}}</li>
+                                                        </ul>
+
+                                                        <p class="title" ng-bind="myService.Name"></p>
+                                                        <p ng-bind="myService.Description"></p>
+                                                    </div>
+                                                    </a>
+                                                    <div class="response">
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 share" ng-click="openShareModal(weburl + $state.href('Main.Business.Detail.Info', {id: myService.id}), 'Share This Service')">
+                                                            Share
+                                                        </div>
+                                                        <a ui-sref="Main.Business.Detail.Edit({id: myService.id})">
+                                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rspv">
+                                                                EDIT
+                                                            </div>
+                                                        </a>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+</section>

@@ -1,0 +1,31 @@
+
+    <img src="images/close.png" id="close_image" alt="" ng-click="cancel()" />
+    <div class="content-block">
+        <div class="jumbotron-block">
+            <label>Your event have been sucessfully created. You can now invite your friends now or get services you need for the event.</label> 
+        </div>
+        <div class="event-btn-group">
+            <a class="btn btn-primary btn-invite" ng-click="invite()">Invite</a>
+            <a class="btn btn-primary btn-services" ng-click="services()">Services</a> 
+        </div>
+                <div style="padding:30px;" class="row" ng-show="share">
+                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-4">
+                        <a href="#" socialshare socialshare-provider="facebook" socialshare-text="" socialshare-url="{{eventUrl}}"> 
+                            <img style="width: 50px;height: 50px;" ng-src="images/facebook-share1.png"> 
+                        </a>
+                    </div> 
+
+                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-4">
+                        <a href="#" socialshare socialshare-provider="twitter" socialshare-text="" socialshare-url="{{eventUrl}}"> 
+                            <img style="width: 50px;height: 50px;" ng-src="images/twitter_share1.png"> 
+                        </a>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-4">
+                        <a href="#" socialshare socialshare-provider="google" socialshare-text=""
+                            socialshare-hashtags="" socialshare-url="{{eventUrl}}"> 
+                            <img style="width: 50px;height: 50px;" ng-src="images/google_share1.png"> 
+                        </a>
+                    </div>
+                </div>
+    </div>

@@ -1,0 +1,73 @@
+.page.page_search {
+  height: 100%;
+  overflow: hidden;
+  margin-top: 8.6em;
+
+  .heading {
+    padding: 1.6em 0 1.25em 0;
+
+    #filterForm {
+       @media screen and (max-width: 320px) {
+         .input_wrapper {
+           label {
+             display: block;
+           }
+           .fiter-input {
+             width: 100%;
+           }
+         }
+      }
+    }
+  }
+
+  #events-tab .subtitle {
+    color: #a9a9a9;
+    padding-left: 5px;
+  }
+
+  .page__body {
+    // display: table-row;
+    display: block;
+    height: 100%;
+  }
+
+  .searchInfo {
+
+    @media (min-width: 992px) {
+      display: table-cell;
+      vertical-align: top;
+      position: relative;
+    }
+  }
+
+  .search-map {
+    display: none;
+    overflow:hidden;
+    padding-left:0px;
+    height: 100%;
+
+    @media (min-width: 992px) {
+      height: 88%;
+      display: table-cell;
+      right: 0;
+      float: none;
+      vertical-align: top;
+      position: fixed;
+      top: 8em;
+      z-index: 0; 
+    }
+  }
+
+  .load-more-box {
+    text-align: center;
+    padding-top: 25px;
+  }
+
+  .load-more-control {
+    &:extend(.search_event);
+    float: none;
+  }
+}
+
+@import "../components/search-builder";
+@import "../components/search-result";

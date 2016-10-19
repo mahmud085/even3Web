@@ -1,0 +1,59 @@
+<div style="outline:none">
+    <img style="outline:none;" src="images/close.png" id="close_image" alt="" ng-click="cancel()" />
+</div>
+<div style="margin:20px; padding:20px;">
+    <!--<uib-accordion style="padding-top:15px">
+        <uib-accordion-group heading="{{eventTicket.event.Name}}" ng-repeat="eventTicket in eventTicketList">-->
+    <div style="margin:10px; padding:10px; border: 1px solid black" ng-repeat="eventTicket in eventTicketList">
+        <div class="panel-body">
+            <div class="row accordion_box">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div style="padding:10px; border:1px solid #d8d8d8; width:120px">
+                        <qrcode version="3" error-correction-level="M" size="100" data="{{eventTicket.id}}"></qrcode>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                    <h5>{{eventTicket.event.Name}}</h5>
+                    <p class="description" style="height:35px; overflow:hidden;">
+                        {{eventTicket.event.Description}}
+                    </p>
+                    <ul>
+                        <li><img src="images/date.png" alt=""> {{eventTicket.event.StartDate | date}}</li>
+                        <li><img src="images/pin.png" alt=""> {{eventTicket.event.Address}}</li>
+                    </ul>
+                    <p class="hline"></p>
+                    <div class="share float-left">
+                        <p class="float-left"> Share this event On:</p>
+                        <ul>
+                            <li>
+                                <a href="" socialshare socialshare-provider="facebook" socialshare-text="" socialshare-hashtags="angularjs, angular-socialshare"
+                                socialshare-url="{{weburl + $state.href('Main.Event.Detail.Info', {id: eventTicket.EventId})}}">
+                                    <img src="images/share_ticket_1.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" socialshare socialshare-provider="twitter" socialshare-text="" socialshare-hashtags="angularjs, angular-socialshare"
+                                socialshare-url="{{weburl + $state.href('Main.Event.Detail.Info', {id: eventTicket.EventId})}}">
+                                    <img src="images/share_ticket_2.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" socialshare socialshare-provider="google" socialshare-text="" socialshare-hashtags="angularjs, angular-socialshare"
+                                socialshare-url="{{weburl + $state.href('Main.Event.Detail.Info', {id: eventTicket.EventId})}}">
+                                    <img src="images/share_ticket_3.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tickets float-right">
+                        1 tickets
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </uib-accordion-group>
+    </uib-accordion> -->
+</div>

@@ -1,0 +1,63 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>My Profile</h1>
+                <p class="greyt">The place where you can edit settings, activities, tickets and history. Basically all you need to know about...you!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="profile_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <side-nav></side-nav>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div>
+                    <div cg-busy="interestPromise">
+                    <div id="interests-tab" class="tab-pane">
+					    <form id="interetsForm">
+						    <div class="tab-container">
+						    <h4>Interests</h4>
+						    <div class="form_content">
+						    	<p>Select what are your interests:</p>
+						    	<input type="checkbox" id="arts_crafts" name="arts_crafts" ng-model="interest0" ng-click="showInterest(0, interest0)"/>
+								<label for="arts_crafts"><span></span>Arts & Crafts</label><br/> 
+								<input type="checkbox" id="collecting" name="collecting" ng-model="interest1" ng-click="showInterest(1, interest1)"/>
+								<label for="collecting"><span></span>collecting</label><br/>
+								<input type="checkbox" id="dancing" name="dancing" ng-model="interest2" ng-click="showInterest(2, interest2)"/>
+								<label for="dancing"><span></span>dancing</label><br/>
+								<input type="checkbox" id="drama" name="drama" ng-model="interest3" ng-click="showInterest(3, interest3)"/>
+								<label for="drama"><span></span>drama</label><br/>
+								<input type="checkbox" id="food_drink" name="food_drink" ng-model="interest4" ng-click="showInterest(4, interest4)"/>
+								<label for="food_drink"><span></span>food and Drink</label><br/>
+								<input type="checkbox" id="games" name="dancing" ng-model="interest5" ng-click="showInterest(5, interest5)"/>
+								<label for="games"><span></span>games</label><br/>
+								<input type="checkbox" id="music" name="music" ng-model="interest6" ng-click="showInterest(6, interest6)"/>
+								<label for="music"><span></span>music</label><br/>
+								<input type="checkbox" id="outdoor" name="outdoor" ng-model="interest7" ng-click="showInterest(7, interest7)"/>
+								<label for="outdoor"><span></span>outdoor Hobbies</label><br/>
+								<input type="checkbox" id="pets" name="pets" ng-model="interest8" ng-click="showInterest(8, interest8)"/>
+								<label for="pets"><span></span>pets</label><br/>
+								<input type="checkbox" id="rc_hobbies" name="rc_hobbies" ng-model="interest9" ng-click="showInterest(9, interest9)"/>
+								<label for="rc_hobbies"><span></span>rc Hobbies</label><br/>
+								<input type="checkbox" id="sports" name="sports" ng-model="interest10" ng-click="showInterest(10, interest10)"/>
+								<label for="sports"><span></span>sports</label><br/>
+							</div>	
+					      	</div>
+				      		<input type="submit" class="submit" value="Save changes" ng-click="setInterest()">
+				      	</form>
+					  </div>
+                      <div class="alert alert-success" style="margin-top:1em; text-align:center; " ng-show="showMsg">
+                          Successfull!!
+                      </div>
+                </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</section>
+                      

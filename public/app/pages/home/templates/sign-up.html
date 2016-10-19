@@ -1,0 +1,63 @@
+<div cg-busy="{promise:signupPromise,message:'Loading....',delay:300,minDuration:700}" class="sighup-container">
+	<section class="signup-account">
+		<div class="form-container">
+			<div class="form-body">
+				<div class="full-logo-icon">
+					<a  class="logo" ui-sref="Main.Home.Event"></a>
+				</div>
+				<h3>Get started today!</h3>
+				<p>It only takes 2 minutes and it’s FREE for life!</p>
+				<div id="social-list">
+					<a class="btn btn-block btn-social btn-facebook" ng-click="FBLogin()">
+						<span class="fa fa-facebook"></span>
+						With Facebook
+					</a>
+					<google-plus-signin clientid="389760997134-958hp3jrnartcnt4l25api3fgl6rjc5b" autorender="false" customtargetid="my-custom-element">
+						<a class="btn btn-block btn-social btn-google" ng-click="GoogleLogin()">
+							<span class="fa fa-google"></span>
+							With Google
+						</a>
+					</google-plus-signin>
+				</div>
+				<p class="line-through"><span>or</span></p>
+				<!--<hr>-->
+				<form name="signupForm" class="signup-form" novalidate>
+					<div class="input-container name">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<label for="first_name" class="control-label">First name:</label>
+							<input type="text" id="first_name" name="first_name" placeholder="Tell us your name" ng-model="user.FirstName" required /></div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<label for="last_name" class="control-label">Last name:</label>
+							<input type="text" id="last_name" name="last_name" placeholder="And your last name" ng-model="user.LastName" required />
+						</div>
+					</div>
+					<div class="input-container">
+						<label for="email" class="control-label">Email</label>
+						<input type="email" id="email" name="email" placeholder="Your email address" ng-model="user.email" required />
+					</div>
+					<div class="input-container">
+						<label for="password" class="control-label">Password:</label>
+						<input type="password" id="password" name="password" placeholder="Type a strong password" ng-model="user.password" required
+						/>
+					</div>
+					<div class="input-container">
+						<!--<label for="nwl" class="control-label">Subscribe to Newsletter:</label>-->
+						<input type="checkbox" id="nwl" name="nwl" ng-model="user.Newsletter" />
+						<label for="nwl" class="control-label subscribe-label"><span></span>Would Like To Get Weekly Updates About Events Near You</label>
+					</div>
+					<div class="input-container btn-container col-xs-12">
+						<input type="button" id="submit" name="submit" value="SIGN UP" ng-click="signup(user)" />
+						<div id="already-registered" ui-sref="Main.Login">
+							<a ui-sref="Main.Login">Already registered?</a>
+							<a ui-sref="Main.Login">Login to your Account</a>
+						</div>
+					</div>
+					<div ng-show="alert" class="alert alert-danger">
+							<strong>{{err_msg}}.</strong>
+					</div>
+						<p class="terms"></p>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

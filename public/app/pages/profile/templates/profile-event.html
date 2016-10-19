@@ -1,0 +1,186 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>My Profile</h1>
+                <p class="greyt">The place where you can edit settings, activities, tickets and history. Basically all you need to know about...you!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="profile_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <side-nav></side-nav>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div>
+                    <div id="events-tab" class="tab-pane ">
+                        <h4>Events</h4>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="event_response profile">
+                                    <ul class="nav nav-pills">
+                                        <li class="active first" ng-click="event = 'going'"><a data-toggle="tab" href="">Going To</a></li>
+                                        <li class="last" ng-click="event = 'hosting'"><a data-toggle="tab" href="">Hosting</a></li>
+                                    </ul>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div>
+                                    <div id="going-tab" class="tab-pane fade in active" ng-show="event === 'going'">
+                                        <div cg-busy="goingEventPromise">
+                                            <div ng-hide="goingEventList.length" style="text-align:center">
+                                                <p><h3>No Events to Show</h3></p>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 event-card" ng-repeat="goingEvent in goingEventList" ng-show="goingEventList.length">    
+                                                <div class="event_box_container" width="255px" height="400px">
+                                                    <a ui-sref="Main.Event.Detail.Info({id: goingEvent.event.id})">
+                                                    <img class="event_img" ng-src="{{baseurl + goingEvent.event.EventPicture}}" err-src="images/events.png"
+                                                        width="255px" height="160px"/>
+                                                    <img class="avatar img-circle" ng-src="{{baseurl + goingEvent.event.account.UserPicture}}" err-src="images/empty-avatar.png"
+                                                         />
+
+                                                    <div class="event_description" style="height: 180px;overflow: hidden">
+                                                        <ul class="event-pins">
+                                                            <li><img src="images/date.png" alt=""> {{goingEvent.event.StartDate | date}}</li>
+                                                            <li><img src="images/pin.png" alt=""> {{goingEvent.event.Address}}</li>
+                                                        </ul>
+
+                                                        <p class="title" ng-bind="goingEvent.event.Name"></p>
+                                                        <p ng-bind="goingEvent.event.Description"></p>
+                                                    </div>
+                                                    </a>
+                                                    <div class="response">
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 share"  ng-click="openShareModal(weburl + $state.href('Main.Event.Detail.Info', {id: goingEvent.id}), 'Share This Event')">
+                                                            Share
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 disableButton">
+                                                            GOING
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div id="hosting-tab" class="tab-pane" ng-show="event === 'hosting'">
+                                        <div ng-hide="hostingEventList.length" style="text-align:center">
+                                            <p><h3>No Events to Show</h3></p>
+                                        </div>
+                                        <div ng-show="hostingEventList.length">
+                                            <div ng-hide="showUpcomingEvent" style="text-align:center;margin:20px">
+                                                <span><strong>You Have No Upcoming Event</strong></span>
+                                            </div>
+                                            <div ng-show="showUpcomingEvent" class="row upcoming_event_row_container">
+                                                <p class="title">Your upcoming event: </p>
+                                                <div class="upcoming_event event-card" ng-repeat="upComingHostEvent in upComingHostEventList">
+                                                    <a ui-sref="Main.Event.Detail.Info({id: upComingHostEvent.id})">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5 up_img_container">
+                                                        <img class="event_img" ng-src="{{baseurl + upComingHostEvent.EventPicture}}" err-src="images/events.png"
+                                                            width="255px" height="222px"/>
+                                                    </div> 
+                                                    </a>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 up_description_container">
+                                                        <a ui-sref="Main.Event.Detail.Info({id: upComingHostEvent.id})">
+                                                        <div class="upper_container" style=" height: 166px; overflow:hidden; ">
+                                                            <ul class="dates event-pins">
+                                                                <li><img src="images/date.png" alt=""> {{upComingHostEvent.StartDate | date}}</li>
+                                                                <li><img src="images/pin.png" alt=""> {{upComingHostEvent.Address}}</li>
+                                                            </ul>
+
+                                                            <p class="title" style="color:#000" ng-bind="upComingHostEvent.Name"></p>
+
+                                                            <p class="description" ng-bind="upComingHostEvent.Description"></p>
+                                                        </div>
+                                                        </a>
+                                                        <p class="hline"></p>
+                                                        <div class="share float-left">
+                                                            <p class="float-left"> Share this event On:</p>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="" socialshare socialshare-provider="facebook" socialshare-text=""
+                                                                        socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="{{weburl + $state.href('Main.Event.Detail.Info', {id: upComingHostEvent.id})}}">
+                                                                        <img src="images/share_ticket_1.jpg" alt="">
+                                                                    </a>    
+                                                                </li>
+                                                                <li>
+                                                                    <a href="" socialshare socialshare-provider="twitter" socialshare-text=""
+                                                                        socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="{{weburl + $state.href('Main.Event.Detail.Info', {id: upComingHostEvent.id})}}">
+                                                                        <img src="images/share_ticket_2.jpg" alt="">
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="" socialshare socialshare-provider="google" socialshare-text=""
+                                                                        socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="{{weburl + $state.href('Main.Event.Detail.Info', {id: upComingHostEvent.id})}}">
+                                                                        <img src="images/share_ticket_3.png" alt="">
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <a ui-sref="Main.Event.Detail.Edit({id: upComingHostEvent.id})">
+                                                            <div class="edit float-right">
+                                                                edit
+                                                            </div>
+                                                        </a>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                            </div>
+
+                                        <p class="title">You hosted these events in the past: </p>
+                                        <div class="row">
+                                            <div ng-hide="pastHostEventList.length" style="text-align:center;">
+                                                <p><h3>No Events to Show</h3></p>
+                                            </div>
+                                            <div ng-show="pastHostEventList.length">
+                                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" ng-repeat="pastEvent in pastHostEventList">
+                                                <a ui-sref="Main.Event.Detail.Info({id: pastEvent.id})">
+                                                <div class="event_box_container" width="255px" height="400px">
+                                                    <img class="event_img" ng-src="{{baseurl + pastEvent.EventPicture}}" err-src="images/events.png"
+                                                        width="255px" height="160px"/>
+                                                    <img class="avatar img-circle" ng-src="{{baseurl + pastEvent.account.UserPicture}}" err-src="images/empty-avatar.png"
+                                                         />
+
+                                                    <div class="event_description" style="height:180px;overflow: hidden;">
+                                                        <ul class="event-pins">
+                                                            <li><img src="images/date.png" alt=""> {{pastEvent.StartDate | date}}</li>
+                                                            <li><img src="images/pin.png" alt=""> {{pastEvent.Address}}</li>
+                                                        </ul>
+
+                                                        <p class="title" ng-bind="pastEvent.Name"></p>
+                                                        <p ng-bind="pastEvent.Description" style="height:55px; overflow:hidden;"></p>
+                                                    </div>
+                                                    <!--<div class="response">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 share">
+                                                            Share
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 rspv">
+                                                            RSVP
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>-->
+                                                </div>
+                                                </a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+</section>            

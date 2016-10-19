@@ -1,0 +1,36 @@
+.home-search {
+  margin-top: -15em;
+  padding-top: 5px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .event,
+  .place,
+  #event_type,
+  .search {
+    border-radius: 25px;
+    margin-top: 15px;
+    padding: 14px 20px;
+
+    @media screen and (min-width: 768px) {
+      padding: 20px 25px;
+      border-radius: 0;
+      margin-top: 0;
+    }
+  }
+
+  .event {
+    @media screen and (min-width: 768px) {
+      border-radius: 50px 0 0 50px;
+    }
+  }
+
+  .search {
+    @media screen and (min-width: 768px) {
+      border-radius: 0 50px 50px 0;
+    }
+  }
+}

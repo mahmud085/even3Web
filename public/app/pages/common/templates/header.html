@@ -1,0 +1,125 @@
+<div class="header-wrapper">
+    <header class="header hp" ng-show="$state.is('Main.Home.Event')">
+        <div class="nav">
+            <div class="container">
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 logo_container">
+                    <a ui-sref="Main.Home.Event"><img class="logo" src="images/logo.png" alt="logo"></a>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 hamburger_btn">
+                    <img class="hamburger" src="images/hamburger.png" ng-click="showMenu = !showMenu"/>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 desktop_menu">
+                        <ul class="menu">
+                            <li ui-sref="Main.Event.Create" class="event">Create event</li>
+                            <li ui-sref="Main.Business.Create">Register your Business</li>
+                            <li ui-sref="Main.HowItWorks">How it works</li>
+                                
+                            <!--<li class="dropdown" id="single-button" uib-dropdown  is-open="status.isopen">
+                                <a uib-dropdown-toggle>
+                                    More <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu header-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem" class="header-item"><a ui-sref="Main.HowItWorks">How it works</a></li>
+                                </ul>
+                            </li>-->
+                            <li ui-sref="Main.Signup" ng-hide="loggedIn">Signup</li>
+                            <li ui-sref="Main.Profile.Info" ng-show="loggedIn">Profile</li>
+                            <li ng-hide="loggedIn" ui-sref="Main.Login">Login</li>
+                            <li ng-show="loggedIn" ng-click="logout()">Logout</li>
+                            <!-- <li class="submenu">More<img src="images/menu-arrow.png"></li> -->
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="mobile_menu">
+                    <ul class="container menu" ng-class="{displayMenu: showMenu}" ng-click="showMenu = !showMenu">
+                        <li ui-sref="Main.Event.Create" class="event">Create event</li>
+                        <li ui-sref="Main.Business.Create">Register your Business</li>
+                        <li ui-sref="Main.HowItWorks">How it works</li>
+                        
+                        <!--<li class="dropdown" id="single-button" uib-dropdown  is-open="status.isopen">
+                            <a uib-dropdown-toggle>
+                                More <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu header-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem" class="header-item"><a ui-sref="Main.HowItWorks">How it works</a></li>
+                            </ul>
+                        </li>-->
+                        <li ui-sref="Main.Signup" ng-hide="loggedIn">Signup</li>
+                        <li ui-sref="Main.Profile.Info" ng-show="loggedIn">Profile</li>
+                        <li ng-hide="loggedIn" ui-sref="Main.Login">Login</li>
+                        <li ng-show="loggedIn" ng-click="logout()">Logout</li>
+                        <!-- <li class="submenu">More<img src="images/menu-arrow.png"></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="container">
+                <p class="title">CREATE AND FIND LOCAL EVENTS YOUR WAY</p>
+                <p class="subtitle">How you want it</p>
+                <p class="subtitle two">Meetup, Hire hands, Share with friends. Simply!</p>
+            </div>
+        </div>
+    </header>
+
+    <header class="header" ng-show="!$state.is('Main.Home.Event')" ng-class="{ fixHeader: $state.is('Main.Search'), 'header_search': $state.is('Main.Search') }">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-9 col-sm-3 col-md-1 col-lg-1 logo_container">
+                    <a ui-sref="Main.Home.Event"><img class="logo" src="images/logo.png" alt="logo"></a>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-4 search_container">
+                    <form id="searchForm">
+                        <input type="text" class="search_box" name="search" ng-model="search"
+                               placeholder="Search Event"/>
+                        <button class="search" name="search_action" ng-click="searchFn($scope.search)"><img class="magnify" src="images/search.png"></button>
+                    </form>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-8 col-lg-7 hamburger_btn">
+                    <img class="hamburger" src="images/hamburger.png" width="50" ng-click="showMenu = !showMenu"/>
+                    <div class="desktop_menu">
+                        <ul class="menu">
+                            <li ui-sref="Main.Event.Create" class="event">Create event</li>
+                            <li ui-sref="Main.Business.Create">Register your Business</li>
+                            <li ui-sref="Main.HowItWorks">How it works</li>
+                            <!--<li class="dropdown" id="single-button" uib-dropdown  is-open="status.isopen">
+                                <a uib-dropdown-toggle>
+                                    More <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu header-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem" class="header-item"><a ui-sref="Main.HowItWorks">How it works</a></li>
+                                </ul>
+                            </li>-->
+                            <li ui-sref="Main.Signup" ng-hide="loggedIn">Signup</li>
+                            <li ui-sref="Main.Profile.Info" ng-show="loggedIn">Profile</li>
+                            <li ng-hide="loggedIn" ui-sref="Main.Login">Login</li>
+                            <li ng-show="loggedIn" ng-click="logout()">Logout</li>
+                            <!-- <li class="submenu">More<img src="images/menu-arrow.png"></li> -->
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="mobile_menu">
+                    <ul class="container menu" ng-class="{displayMenu: showMenu}" ng-click="showMenu = !showMenu">
+                        <li ui-sref="Main.Event.Create" class="event">Create event</li>
+                        <li ui-sref="Main.Business.Create">Register your Business</li>
+                        <li ui-sref="Main.HowItWorks">How it works</li>
+                        <!--<li class="dropdown" id="single-button" uib-dropdown  is-open="status.isopen">
+                            <a uib-dropdown-toggle>
+                                More <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu header-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem" class="header-item"><a ui-sref="Main.HowItWorks">How it works</a></li>
+                            </ul>
+                        </li>-->
+                        <li ui-sref="Main.Signup" ng-hide="loggedIn">Signup</li>
+                        <li ui-sref="Main.Profile.Info" ng-show="loggedIn">Profile</li>
+                        <li ng-hide="loggedIn" ui-sref="Main.Login">Login</li>
+                        <li ng-show="loggedIn" ng-click="logout()">Logout</li>
+                        <!-- <li class="submenu">More<img src="images/menu-arrow.png"></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>

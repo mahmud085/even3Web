@@ -1,0 +1,51 @@
+<div cg-busy="loginPromise" class="sighup-container">
+	<section class="signup-account for-login">
+		<div class="form-container">
+			<div class="form-body">
+				<div class="full-logo-icon">
+					<a class="logo" ui-sref="Main.Home.Event"></a>
+				</div>
+				<h3>Get Started!</h3>
+				<p>
+					Find the best event in your town today!	
+				</p>
+				<div id="social-list">
+					<a class="btn btn-block btn-social btn-facebook" ng-click="FBLogin()">
+						<span class="fa fa-facebook"></span>
+						With Facebook
+					</a>
+					<google-plus-signin clientid="389760997134-958hp3jrnartcnt4l25api3fgl6rjc5b" autorender="false" customtargetid="my-custom-element">
+						<a class="btn btn-block btn-social btn-google" ng-click="GoogleLogin()">
+							<span class="fa fa-google"></span>
+							With Google
+						</a>
+					</google-plus-signin>
+				</div>
+				<p class="line-through"><span>or</span></p>
+				<!--<hr>-->
+				<form name="signupForm" class="signup-form" novalidate>
+					<div class="input-container for-login">
+						<label for="email" class="control-label">Email</label>
+						<input type="text" id="email" name="email" placeholder="Email" ng-model="user.email" required ng-keyup="keyUp($event)" />
+					</div>
+					<div class="input-container for-login">
+						<label for="password" class="control-label">Password:</label>
+						<input type="password" id="password" name="password" placeholder="Password" ng-model="user.password" required ng-keyup="keyUp($event)"
+						/>
+						<div id="forgot_password"><a href="" ng-click="goto('Main.ForgotPassword')">Forgot password?</a></div>
+					</div>
+					<div class="input-container login-btn for-login">
+						<input type="button" id="submit" name="submit" value="LOGIN" ng-click="login(user)" />
+						<div id="already-registered" ui-sref="Main.Signup">
+							<a ui-sref="Main.Signup">Create Account</a>
+						</div>
+					</div>
+					<div style="display:inline-block;"></div>
+					<div ng-show="err" class="alert alert-danger">
+						<strong>Login Failed!</strong> {{errMsg}}
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

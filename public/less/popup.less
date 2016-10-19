@@ -1,0 +1,243 @@
+#popup {
+	/*min-width:600px;*/
+	padding-top: 1em;
+	/*border:1px solid #F0F0F0;*/
+}
+
+#close_image {
+	position: relative;
+    top: 10px;
+	float:right;
+	padding-right:1em;
+}
+
+#login {
+	width:100%;
+	margin:0 auto;
+	font-family: 'Montserrat', sans-serif; 
+	font-size:15px;
+	clear:both;
+	color: #929fa8;
+}
+
+#login p {
+	text-align: center;
+	margin-bottom:0.5em;
+}
+
+#login_title {
+    font-size:20px;
+    color: #374045;
+}
+
+#buttons {
+	width:76%;
+	margin:0 auto;
+	margin-top: 2em;
+}
+
+.input_container {
+	position: relative;
+
+	&.position-not-set{
+		position: unset;
+	}
+}
+
+.text_filed {
+	width:100%;
+	background: #f9f9f9;
+	border-radius:0.3em;
+	border: 1px solid #e3e3e3;
+	font-family: 'Montserrat', sans-serif; 
+	color:#a9a9a9;
+	font-size: 13px;
+	height: 40px;
+	float:left;
+	padding-left: 3.5em;
+}
+
+.form_image {
+	float:left;
+	position: absolute;
+	z-index: 1;
+}
+
+.separator {
+	clear: both;
+	height: 1em;
+}
+
+#popup textarea:focus, input:focus{
+    outline: none;
+}
+
+#forgot_password {
+	clear: left;
+	float:right;
+	position: absolute;
+	z-index: 1;
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 10px;
+	right:2em;
+	padding-top: 1.5em;
+}
+
+#forgot_password a {
+	text-decoration: none;
+	color:#a9a9a9;
+}	
+
+#login_button {
+	background: #682079;
+	border-radius:0.3em;
+	height:2.80em;
+	color: #fff;
+	width:100%;
+	border:0;
+	font-family: 'Montserrat', sans-serif; 
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+#popup hr {
+	width:40%!important;
+	float:left!important;
+	color: #e3e3e3!important;
+	border: 1px solid #e3e3e3!important;
+	margin-top: 10px!important;
+}
+
+#or_button {
+	width:18%;
+	float: left;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif; 
+	font-size: 16px;
+	color: #374045;
+}
+
+#social_media {
+	margin: 0 auto;
+	width: 76%;
+	margin-top: 1em;
+	margin-bottom: 2em;
+	margin-left: 12%;
+}
+
+#social_media img {
+	cursor:pointer;
+	margin-bottom:1em;
+	width: 100%;
+}
+
+.modal-content .content-block .jumbotron-block,
+.notification-block .content-block .jumbotron-block {
+	padding-top: 70px;
+    margin: 0 50px;
+    color: #343635;
+    text-align: center;
+}
+
+.modal-content .content-block .jumbotron-block label,
+.notification-block .content-block .jumbotron-block label {
+	font-size: 19px;
+	color: #343635;
+	line-height: 1.7em;
+	text-transform: none;
+	margin-bottom: 0;
+}
+
+.event-btn-group {
+	margin: 45px 0px 70px 0px;
+    text-align: center;
+}
+
+.event-btn-group .btn-invite {
+	margin-right: 40px;
+
+}
+
+.event-btn-group .btn {
+	color: #fff;
+    background-color: #682079;
+    height: 40px;
+	width: 155px;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 10px 0px;
+    text-transform: uppercase;
+	display: inline-block;
+	width: 42%;
+}
+
+.notification-block {
+	width: auto;
+    margin: 233px auto 233px auto;
+	background-color: #fff;
+	border: 1px solid transparent;
+    -webkit-box-shadow: 0 0px 20px rgba(197, 194, 194, 0.5);
+    box-shadow: 0 0px 20px rgba(197, 194, 194, 0.5);
+	padding: 0 115px;
+}
+
+.notification-block .event-btn-group .btn{
+	height: 45px;
+	border-radius: 20px;
+	width: 30%;
+	text-transform: none;
+}
+
+.notification-block .event-btn-group .btn-invite {
+    margin-right: 50px;
+}
+
+.popup-close{
+	cursor:pointer;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+	.modal .modal-dialog.modal-sm {
+		width: 570px;
+		margin: 233px auto;
+	}
+}
+
+@media screen and (min-width: 830px) {
+
+	.notification-block {
+		width: 830px;
+		margin: 100px auto 0 auto;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.notification-block {
+		padding: 0 20px;
+		margin: 0 auto;
+	}
+}
+
+
+
+@media screen and (max-width: 477px) {
+	.modal-content .content-block .jumbotron-block label,
+	.notification-block .content-block .jumbotron-block label {
+		font-size: 16px;
+	}
+	.notification-block {
+		padding: 0;
+	}
+	.event-btn-group .btn-invite {
+		margin-right: 10px;
+
+	}
+}
+@media screen and (max-width: 325px) {
+	.modal-content .content-block .jumbotron-block label,
+	.notification-block .content-block .jumbotron-block label {
+		font-size: 14px;
+	}
+}

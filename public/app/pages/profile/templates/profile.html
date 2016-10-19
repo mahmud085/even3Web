@@ -1,0 +1,125 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>My Profile</h1>
+                <p class="greyt">The place where you can edit settings, activities, tickets and history. Basically all you need to know about...you!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="profile_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <side-nav></side-nav>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="tab-content">
+                    <div cg-busy="profilePromise">
+                        <div id="profile-tab" class="tab-pane fade in active">
+                            <div cg-busy="profilePromise">
+                                <form id="profileForm" novalidate>
+                                    <div class="tab-container">
+                                        <h4>Profile</h4>
+                                        <div class="form_content">
+                                            <div class="input_container">
+                                                <label for="first_name">First name:</label>
+                                                <br/>
+                                                <input type="text" id="first_name" name="first_name" placeholder="" ng-model="userAccInfo.FirstName" />
+                                            </div>
+                                            <div class="input_container">
+                                                <label for="last_name">Last name:</label>
+                                                <br/>
+                                                <input type="text" id="last_name" name="last_name" placeholder="" ng-model="userAccInfo.LastName" />
+                                            </div>
+                                            <div class="input_container">
+                                                <label for="username">Username:</label>
+                                                <br/>
+                                                <input type="text" id="username" name="username" placeholder="" ng-model="userAccInfo.username" />
+                                            </div>
+                                            
+                                            <div class="input_container" style="height:30em">
+                                                <label for="pic">Profile picture:</label>
+                                                <br/>
+                                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12" ng-show="showImage">
+                                                    <div>
+                                                        <img style="border-radius:5px;" ng-src="{{baseurl + userAccInfo.UserPicture}}">
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="margin-top:1em; padding-left:0px">
+                                                        <div>
+                                                            <button class="imageButton" ng-click="removeImage()">Remove</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" ng-show="showImageInput">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div id="upload_photo" class="upload">
+                                                            <div class="inner" ng-hide="pic">
+                                                                <img class="camera" src="images/camera.png">
+                                                                <p>Upload a nice picture of you</p>
+                                                            </div>
+                                                            <canvas ng-show="pic" width="300" height="300" tw-cropper="crop" source="pic"></canvas>
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div ng-show="pic">
+                                                                        <button style="width:100%" class="imageButton" ng-click="convertUrl()">Crop</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div>
+                                                                        <button style="width:100%" class="imageButton" ng-show="pic" ng-click="removePic()" ng-show="pic">Remove</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="file" ng-hide="pic" ngf-select ng-model="pic" name="file" ng-change="checkPic(pic)">
+                                                        <div class="alert alert-danger" ng-show="picErr">{{picErrMsg}}</div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div ng-show="pic">
+                                                            <img style="border-radius:5px;" ng-src="{{userAccInfo.file}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-danger" ng-show="cropMsg">{{cropMsgErr}}</div>
+                                            <div class="input_container">
+                                                <label for="email">Email:</label>
+                                                <br/>
+                                                <input type="email" id="email" name="email" placeholder="" ng-model="userAccInfo.email" />
+                                            </div>
+                                            <div class="input_container">
+                                                <label for="password">Password:</label>
+                                                <br/>
+                                                <input type="password" id="password" name="password" placeholder="" ng-model="userAccInfo.password" ng-change="checkPass()"
+                                                />
+                                            </div>
+                                            <div class="alert alert-danger" ng-show="passErr">{{passErrMsg}}</div>
+                                            <div class="input_container">
+                                                <label for="password_retype">Retype password:</label>
+                                                <br/>
+                                                <input type="password" id="password_retype" name="password_retype" placeholder="" ng-model="rePass" />
+                                            </div>
+                                            <div class="alert alert-danger" ng-show="rePassErr">{{rePassErrMsg}}</div>
+                                            <div class="input_container">
+                                                <label>Subscribe to Newsletter:</label>
+                                                <br/>
+                                                <div class="nwl">
+                                                    <input type="checkbox" id="music_events" name="music_events" ng-model="userAccInfo.Newsletter" />
+                                                    <label for="music_events"><span></span>Yes</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="submit" value="Save changes" ng-click="editProfile()">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

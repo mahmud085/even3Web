@@ -1,0 +1,21 @@
+<section class="home-search">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 search_container_homepage">
+	      <div class="search_hp_container">
+		      <form id="searchForm" method="POST" action="">
+			      <input type="text" class="event" name="event" placeholder="Event name" ng-model="name" ng-keyup="keyUp($event)"/>
+			      <input type="text" class="place" name="place" placeholder="Location" ng-model="Address" list="addr" ng-keyup="keyUp($event)"/>
+                  <datalist id="addr">
+                      <option  data-ng-repeat="addr in addressList" value="{{addr.formatted_address}}">
+                  </datalist>
+			      <div class="select-style">
+			      		<select id="event_type" name="event_type" ng-model="categoryId" ng-keyup="keyUp($event)"
+                         ng-options="eventCategory.id as eventCategory.Name for eventCategory in eventCategoryList" >
+                            <option value="" disabled selected>Category</option>
+                        </select>
+			      	</div>	
+			      <input type="button" class="search" name="search_action" value="Search event" ng-click="search(name, categoryId)" />
+			      <div class="clear"></div>
+		      </form>
+	      </div>	      
+	    </div>
+	</section>  

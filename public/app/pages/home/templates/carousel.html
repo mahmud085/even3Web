@@ -1,0 +1,15 @@
+<div class="owl-container">
+  <div class="container">
+    <div class="row">
+      <p>POPULAR CATEGORIES</p>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 services">
+        <div id="owl-category">
+          <a href="javascript:void(0)" ng-click="goToCategory(slide.id)" ng-repeat="slide in slides" carousel-init>
+            <div class="item">
+              <p>{{slide.text}}</p><img ng-src="{{slide.image}}"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

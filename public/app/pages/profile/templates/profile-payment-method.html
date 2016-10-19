@@ -1,0 +1,118 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>My Profile</h1>
+                <p class="greyt">The place where you can edit settings, activities, tickets and history. Basically all you need to know about...you!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="profile_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <side-nav></side-nav>
+            </div>
+            <div cg-busy="paymentPromise">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <section class="signup">
+                    <div id="services-tab" class="tab-pane">
+                        <!--<h4>Payment Method</h4>-->
+                        <div class="row">
+                            <div class="tab-container">
+                                <h4>Card List</h4>
+                                <div class="form_content" ng-show="cardList.length">
+                                    <p class="title">Choose a Card:</p>
+                                    <div>
+                                        <ul class="list-group">
+                                            <li class="list-group-item well well-sm" style="outline:none" ng-repeat="card in cardList track by $index">
+                                                <strong><p ng-bind="card.Name" ></p></strong>
+                                                <p>**** **** **** **{{card.Number[card.Number.length-2]}}{{card.Number[card.Number.length-1]}}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="input_container">
+                                    <input type="button" id="submit" style="/*margin-bottom:10px;*/" name="submit" value="ADD NEW CARD" ng-click="openModal()" />
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="well well-lg">
+                                    <form name="ccForm" novalidate>
+                                        <div class="form-group">
+                                            <label for="name">Enter Name:</label>
+                                            <input class="form-control" name="name" placeholder="Enter Name on Card" ng-model="card.Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <label for="card-type">Card Type</label>
+                                                    <select ng-model="card.Type" ng-options="type for type in ['Visa', 'American Express', 'MasterCard', 'Discover']"></select>
+                                                    <!--<input ng-model="ccForm.ccNumber.$ccType">
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <label for="card-number">Card Number</label>
+                                                    <input type="text" style="height:43px;" class="form-control" id="cardNumber" cc-number name="ccNumber" ng-model="card.Number"
+                                                    cc-format ng-class="{errorCard: !ccForm.ccNumber.$valid}" cc-type="card.cardType">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="margin-bottom:20px">
+                                            <span>Card Validity: {{ccForm.ccNumber.$valid | yesNo}}</span>
+                                        </div>
+                                        <!--<table class="table">
+                                            <tr>
+                                                <th>Valid</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    {{ccForm.ccNumber.$valid | yesNo}}
+                                                </td>
+                                                <!--<td>
+                                                    {{ccForm.ccNumber.$ccType || 'Unknown'}}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="form-group">
+                                            <label for="cvc">CVC</label>
+                                            <input type="text" class="form-control" id="Ccv" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.Ccv"
+                                            ng-class="{errorCard: !ccForm.ccCvc.$valid}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card-number">Expiration</label>
+                                            <div class="row" cc-exp>
+                                                <div class="col-xs-6">
+                                                    <input placeholder="MM" type="text" class="form-control" cc-exp-month name="ccExpMonth" ng-model="card.ExpiryMonth" ng-class="{errorCard: !ccForm.ccExpMonth.$valid}">
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <input placeholder="YY" type="text" class="form-control" cc-exp-year name="ccExpYear" ng-model="card.ExpiryYear" ng-class="{errorCard: !ccForm.ccExpYear.$valid}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Enter Address:</label>
+                                            <input class="form-control" name="address" placeholder="Enter Address on Card" ng-model="card.BillingAddress" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">Enter City:</label>
+                                            <input class="form-control" name="city" placeholder="Enter City on Card" ng-model="card.City" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="country">Enter Country:</label>
+                                            <input class="form-control" name="country" placeholder="Enter Country on Card" ng-model="card.Country" required>
+                                        </div>
+                                        <input type="button" value="ADD CARD" ng-click="addCard()" ng-disabled="!ccForm.$valid" ng-class="{disableButton: !ccForm.$valid}"
+                                        style="width: 20%; border-radius: 45px; background-color: #682079; color: #fff;">
+                                    </form>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>

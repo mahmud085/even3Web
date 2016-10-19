@@ -1,0 +1,143 @@
+<section class="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>Create Service</h1>
+                <p class="greyt">It only takes 2 minutes and it’s FREE for life!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <div cg-busy="createBizPromise"> 
+                <form id="createServiceForm" novalidate>
+                    <div class="input_container">
+                        <label for="business_name"> *Business name:</label>
+                        <br/>
+                        <input type="text" id="business_name" name="business_name" placeholder="Tell us the name of your business" ng-model="business.Name" required/>
+                    </div>
+                    
+                    <div class="input_container">
+                        <label for="location"> *Location of the business:</label>
+                        <br/>
+                        <input type="text" id="location" name="location" placeholder="Tell us where we can find the event" 
+                            ng-model="Address" list="addr" required/>
+                        <datalist id="addr">
+                            <option data-ng-repeat="addr in addressList" value="{{addr.formatted_address}}">
+                        </datalist>
+                    </div>
+                    
+                    <div class="input_container">
+                        <label for="category"> *Category:</label>
+                        <br/>
+                        <select id="category" name="category" ng-model="business.BusinessCategoryId" 
+                            ng-options="businessCategory.id as businessCategory.Name for businessCategory in businessCategoryList" required>
+                            <option value="" disabled selected>Business Type</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input_container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <label>Select Business Description picture:</label>
+                                    <div id="upload_photo" class="upload">
+                                        <div class="inner" ng-hide="pic" ngf-select ng-model="pic" accept="image/*" ng-change="checkPic(pic)">
+                                            <img class="camera" src="images/camera.png" >
+                                            <p>Upload a nice picture of your Business</p>
+                                        </div>
+                                        <div class="cropper-area" ng-show="pic">
+                                             <img-crop image="pic | ngfDataUrl" 
+                                             result-image="croppedPic" 
+                                             ng-init="croppedPic=''" 
+                                             area-type="rectangle" 
+                                             aspect-ratio="2" 
+                                             result-image-size="{w:800, h:400}"
+                                             on-change="convertUrl($dataURI)"></img-crop>
+                                        </div>
+                                    </div>   
+                                    <div class="alert alert-danger" ng-show="picErr">{{picErrMsg}}</div> 
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="pic">
+                                    <label>Business Description picture:</label>
+                                    <div class="cropped-img-preview">
+                                        <img ng-src="{{croppedPic}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="padding-top:10px">
+                                    <button  class="imageButton btn-small" ng-show="pic" ng-click="removePic()" ng-show="pic">Remove</button>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="input_container">
+                        <label for="business_description"> *Business description:</label>
+                        <br/>
+                        <textarea id="business_description" name="business_description" placeholder="Tell us more about your business" ng-model="business.Description" required/></textarea>
+                    </div> 
+                    <div class="input_container">
+                        <label for="business_name"> *Business Email:</label>
+                        <br/>
+                        <input type="text" id="business_name" name="business_name" placeholder="Email Address of your business" ng-model="business.email" ng-change="validateEmail(business.email)" required/>
+                        <div style="margin-top:1em;" class="alert alert-danger" ng-show="emailAlert">{{emailAlertMsg}}</div> 
+                    </div>
+                    
+                    <div class="input_container">
+                        <label for="business_name"> Business Phone Number:</label>
+                        <br/>
+                        <input type="text" id="business_name" name="business_name" placeholder="Phone Number of your business" ng-model="business.Phone" required/>
+                    </div>
+                    
+                    <div class="input_container">
+                        <label for="business_name"> Business Website:</label>
+                        <br/>
+                        <input type="text" id="business_name" name="business_name" placeholder="Website of your business" ng-model="business.Website" required/>
+                    </div>
+                    
+
+                    <div class="input_container radio_event_container">
+                        <label>Price:</label>
+                        <label for="event_price_free">
+                            <input type="radio" id="event_price_free" name="event_price_type" value="free" ng-model="business.priceType" checked />Free
+                        </label>
+                        <label for="event_price_paid">
+                            <input type="radio" id="event_price_paid" name="event_price_type" ng-model="business.priceType" value="paid" ng-click="business.tickets.push({})"/>Paid
+                        </label>
+                        <!-- <input type="text" id="price" name="price" placeholder="20$ or more?"/> -->
+                    </div>
+
+                    <div class="ticket_type" ng-show="business.priceType === 'paid'">
+                        <div class="ticket_container" ng-repeat="businessTicket in business.tickets">
+                            <p>Service option</p>
+                            <input type="text" placeholder="Service name/category" ng-model="businessTicket.name" />
+                            <input type="text" placeholder="Service price" ng-model="businessTicket.price" />
+                            <select style="width:35%;" ng-model="businessTicket.currency">
+                                <option value="" selected disabled>Ticket Currency</option>
+                                <option>NGN</option>
+                                <option>USD</option>
+                                <option>GBP</option>
+                                <option>EURO</option>
+                            </select>
+                        </div>
+                        <p class="add_new_event" ng-click="business.tickets.push({})">+ Add another price option</p>
+                    </div>
+
+                    <div class="input_container">
+                        <input type="button" id="submit" name="submit" value="CREATE SERVICE" ng-click="createBusiness(business)"/>
+                    </div>
+                    
+                    <div style="margin-top:10px;" ng-show="alert" class="alert alert-danger">
+                        <span style="font-style: italic;">{{err_msg}}</span>
+                    </div> 
+
+                    <div class="xl-space"></div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</section> 

@@ -1,0 +1,75 @@
+<section class="profile_container homepage page page_home">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tab-content">
+                    <div id="events-tab" class="">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="event_response">
+                                    <ul class="nav nav-pills">
+                                        <li class="active first"><a data-toggle="tab" ng-click="getEventList(true)">Upcoming Events</a></li>
+                                        <li class="last"><a data-toggle="tab" ng-click="getEventList(false)">Featured Events</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                       <div cg-busy="eventPromise"> 
+                        <div class="row">
+                            <div class="noMatch" ng-hide="eventList.length">
+                                <Span><h3>No Event Available Matching Your Search</h3></Span>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="eventList.length">
+                                <div id="going-tab" class="tab-pane fade in active" 
+                                        ng-repeat="event in eventList | limitTo : end : beg track by $index">
+                                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                        <div class="event_box_container" width="255px" height="400px">
+                                            <a ui-sref="Main.Event.Detail.Info({id: event.id})">
+                                                <img class="event_img" ng-src="{{baseurl + event.EventPicture}}" err-src="images/events.png"
+                                                width="255px" height="160px"/>
+                                                <img class="avatar img-circle" ng-src="{{baseurl + event.account.UserPicture}}" err-src="images/empty-avatar.png"
+                                                 />
+                                                <div class="label_container" ng-hide="event.tickets.length">
+                                                    <p>FREE</p>
+                                                </div>
+                                                <div class="label_container" ng-show="event.tickets.length">
+                                                    <p>{{event.currencySymbol }} {{event.tickets[0].Price | number:2}}</p>
+                                                </div> 
+                                                <div class="event_description" style="height: 180px;overflow: hidden">
+                                                    <ul>
+                                                        <li><img src="images/date.png" alt=""> {{event.StartDate | date}} </li>
+                                                        <li><img src="images/pin.png" alt=""> {{event.Address}} </li>
+                                                    </ul>
+ 
+                                                    <p class="title" ng-bind="event.Name"></p>
+                                                    <p ng-bind="event.Description"></p>
+                                                </div>
+                                            </a>
+                                            <div class="response"> 
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 share" ng-click="openShareModal(weburl + $state.href('Main.Event.Detail.Info', {id: event.id}), 'Share This Event')">
+                                                    Share
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rspv" ng-click="openRsvpModal(event, $index)">
+                                                    {{event.RsvpValue}}
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div> 
+                                <form id="eventsForm">
+                                    <a ui-sref="Main.Search">
+                                        <button class="search_event load_events" ng-click="show(1)">LOAD MORE</button>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div> 
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>

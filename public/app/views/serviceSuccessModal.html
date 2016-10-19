@@ -1,0 +1,31 @@
+
+    <img src="images/close.png" id="close_image" alt="" ng-click="cancel()" />
+    <div>
+        <div class="jumbotron" style="padding:30px;margin:30px">
+            <label style="color:green">Your service have been sucessfully registered. Don't forget to share with friends.</label> 
+        </div>
+        <div  style="margin:30px">
+            <a class="btn btn-sm btn-primary" ng-click="invite()">Share Now</a>
+            <a class="btn btn-sm btn-primary" ng-click="services()">Continue</a> 
+        </div>
+        <div style="padding:30px;" class="row" ng-show="share">
+                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-4">
+                        <a href="#" socialshare socialshare-provider="facebook" socialshare-text="" socialshare-url="{{eventUrl}}"> 
+                            <img style="width: 50px;height: 50px;" ng-src="images/facebook-share1.png"> 
+                        </a>
+                    </div> 
+
+                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-4">
+                        <a href="#" socialshare socialshare-provider="twitter" socialshare-text="" socialshare-url="{{eventUrl}}"> 
+                            <img style="width: 50px;height: 50px;" ng-src="images/twitter_share1.png"> 
+                        </a>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-3 col-md-4 col-lg-4">
+                        <a href="#" socialshare socialshare-provider="google" socialshare-text=""
+                            socialshare-hashtags="" socialshare-url="{{eventUrl}}"> 
+                            <img style="width: 50px;height: 50px;" ng-src="images/google_share1.png"> 
+                        </a>
+                    </div>
+        </div>
+    </div>

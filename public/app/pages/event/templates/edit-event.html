@@ -1,0 +1,202 @@
+<section class="heading">
+    <div style="text-align:center; margin-top:1em;" class="alert alert-danger" ng-hide="OwnBusiness">
+        You have No Right to Edit Others Event
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>Edit Event</h1>
+                <!--<p class="greyt">It only takes 2 minutes and it’s FREE for life!</p>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="signup">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <form id="createEventForm" novalidate>
+                    <div class="input_container">
+                        <label for="event_title"> *Event Title:</label>
+                        <br/>
+                        <input type="text" id="event_title" name="event_title" placeholder="Come up with an original name for your event" ng-model="event.Name"
+                        requried/>
+                    </div>
+
+                    <div class="input_container">
+                        <label for="location"> *Location of the event:</label>
+                        <br/>
+                        <input type="text" id="location" name="location" placeholder="Tell us where we can find the event" ng-model="Address" list="addr"
+                        required/>
+                        <datalist id="addr">
+                            <option data-ng-repeat="addr in addressList" value="{{addr.formatted_address}}">
+                        </datalist>
+                    </div>
+
+                    <div class="input_container">
+                        <label for="category"> *Category:</label>
+                        <br/>
+                        <div class="select-style">
+                            <select id="category" name="category" ng-model="event.EventCategoryId" required ng-options="eventCategory.id as eventCategory.Name for eventCategory in eventCategoryList">
+                                <option value="" disabled selected>Category</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="dates">
+                        <div class="input_container col-xs-12 col-sm-6 col-md-6 col-lg-6 start_date" style="height:120px">
+                            <label for="url"> *Start Date:</label>
+                            <br/>
+                            <div class="input-append date" id="dp2" data-date="" data-date-format="dd-mm-yyyy">
+                                <datepicker date-format="dd MMM yyyy">
+                                    <input ng-model="StartDate" ng-change="checkDate1(StartDate)" />
+                                </datepicker>
+                            </div>
+                            <div ng-show="dateError1">
+                                <strong style="font-style: italic; color: red">You Can  Not Choose Previous Date</strong>
+                            </div>
+                        </div> 
+                        <div class="input_container col-xs-12 col-sm-6 col-md-6 col-lg-6 start_time">
+                            <label for="start_time">Start Time:</label>
+                            <br/>
+                            <!--<uib-timepicker ng-model="StartTime" show-spinners="false"></uib-timepicker>-->
+                            <mdp-time-picker ng-model="StartTime" mdp-format="hh:mm A" mdp-open-on-click="true" ng-change="checkTime1()"></mdp-time-picker>
+                            <p class="alert alert-danger" ng-show="alertTime1">{{time_msg1}}</p>
+                        </div>
+                        <div class="input_container col-xs-12 col-sm-6 col-md-6 col-lg-6 finish_date">
+                            <label for="url"> *Finish Date:</label>
+                            <br/>
+                            <div class="input-append date" id="dp2" data-date="" data-date-format="dd-mm-yyyy">
+                                <datepicker date-format="dd MMM yyyy">
+                                    <input ng-model="EndDate" type="text" ng-change="checkDate2(EndDate)" />
+                                </datepicker>
+
+                            </div>
+                            <div ng-show="dateError2">
+                                <strong style="font-style: italic; color: red">{{date_err_msg}}</strong>
+                            </div>
+                        </div>
+                        <div class="input_container col-xs-12 col-sm-6 col-md-6 col-lg-6 finish_time">
+                            <label for="finish_time">Finish Time:</label>
+                            <br/>
+                            <!--<uib-timepicker ng-model="EndTime" show-spinners="false"></uib-timepicker>-->
+                            <mdp-time-picker ng-model="EndTime" mdp-format="hh:mm A" mdp-open-on-click="true" ng-change="checkTime2()"></mdp-time-picker>
+                            <p class="alert alert-danger" ng-show="alertTime2">{{time_msg2}}</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                  
+                    <div class="input_container  position-not-set">
+                        <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12" ng-show="showImage">
+                            <div>
+                                <label>Event Description picture:</label>
+                                 <br/>
+                                <img style="border-radius:5px;" ng-src="{{baseurl + event.EventPicture}}">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="margin-top:1em; padding-left:0px">
+                                <div>
+                                    <button class="imageButton btn-small" ng-click="removeImage()">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                 
+                        <div ng-show="showImageInput">
+                                <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <label>Select Description picture:</label>
+                                    <div id="upload_photo" class="upload">
+                                        <div class="inner" ng-hide="pic"  ngf-select ng-model="pic" accept="image/*">
+                                            <img class="camera" src="images/camera.png" >
+                                            <p>Upload a nice picture of your Event</p>
+                                        </div>
+                                        <div class="cropper-area" ng-show="pic">
+                                             <img-crop image="pic | ngfDataUrl" result-image="croppedPic" ng-init="croppedPic=''" area-type="rectangle" aspect-ratio="2" result-image-size="{w:800, h:400}"></img-crop>
+                                        </div>
+                                    </div>   
+                                    <div class="alert alert-danger" ng-show="picErr">{{picErrMsg}}</div> 
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="pic">
+                                    <label>Event Description picture:</label>
+                                    <div class="cropped-img-preview">
+                                        <img ng-src="{{croppedPic}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="padding-top:10px">
+                                    <button  class="imageButton btn-small" ng-show="pic" ng-click="removePic()" ng-show="pic">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="input_container  position-not-set">
+                        <label for="description"> *Event description:</label>
+                        <br/>
+                        <textarea id="description" name="description" placeholder="Tell us more about the event" ng-model="event.Description" required/></textarea>
+                    </div>
+
+                    <div class="input_container radio_event_container">
+                        <label>Price:</label>
+                        <label for="event_price_free">
+                            <input type="radio" id="event_price_free" name="event_price_type" ng-model="event.priceType" value="free" />Free
+                        </label>
+                        <label for="event_price_paid">
+                            <input type="radio" id="event_price_paid" name="event_price_type" ng-model="event.priceType" value="paid" ng-click="event.tickets.push({})"
+                            />Paid
+                        </label>
+                    </div>
+
+                    <div class="ticket_type" ng-show="event.priceType === 'paid'">
+                        <div class="ticket_container" ng-repeat="ticket in event.tickets">
+                            <p>Price option</p>
+                            <input type="text" placeholder="Ticket price" ng-model="ticket.Price" />
+                            <select ng-model="ticket.currency" style="width:32%; height:45px">
+                                <option value="" selected disabled>Ticket Currency</option>
+                                <option>USD</option>
+                                <option>EURO</option>
+                                <option>NGN</option>
+                                <option>GBP</option>
+                            </select>
+                            <input type="text" placeholder="Tickets available" ng-model="ticket.Available" />
+                            <p></p>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="saveTicket(ticket, $index)">
+                                <span class="glyphicon glyphicon-ok"></span> Save
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteTicket(ticket, $index)">
+                                <span class="glyphicon glyphicon-remove"></span> Delete
+                            </button>
+
+                            <p class="add_new_event" ng-click="event.tickets.push({})">+ Add another price option</p>
+                        </div>
+                    </div>
+
+                    <div class="input_container radio_event_container">
+                        <label for="private">Private event:</label>
+                        <label for="event_private_yes">
+                            <input type="radio" id="event_private_yes" ng-model="event.status" name="private" value="private" />Yes
+                        </label>
+                        <label for="event_private_no">
+                            <input type="radio" id="event_private_no" ng-model="event.status" name="private" value="public" checked/>No
+                        </label>
+                    </div>
+
+                    <div class="input_container">
+                        <input type="button" id="submit" name="submit" value="SAVE" ng-click="editEvent()" />
+                    </div>
+                    <div ng-show="alert" class="alert alert-danger">
+                        <span style="font-style: italic;">{{err_msg}}</span>
+                    </div>
+                    
+                    <div style="text-align:center; margin-top:1em;" class="alert alert-danger" ng-hide="OwnBusiness">
+                        You have No Right to Edit Others Event
+                    </div>
+
+                    <div class="xl-space"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

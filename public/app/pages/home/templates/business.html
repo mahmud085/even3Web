@@ -1,0 +1,62 @@
+<div cg-busy="businessPromise"> 
+<div class="container services_container">
+    <div class="row">
+        <div class="noMatch" ng-hide="businessList.length">
+            <Span><h3>No Service Available </h3></Span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="businessList.length">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 services">
+                <p class="title">SERVICES</p>
+                <p class="subtitle"><strong>Need a hand? </strong></p>
+                <p class="subtitle">Organising events is easier with EVEN3, you can easily find and hire best vendors for your event. </p>
+            </div>
+            <div cg-busy="businessPromise">
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 service-block" ng-repeat="business in businessList | limitTo : 4: 0 track by $index" >
+                <div class="event_box_container">
+                    <div cg-busy="saveBusinessPromise">
+                    <a ui-sref="Main.Business.Detail.Info({id: business.id})">
+                    <img class="event_img" ng-src="{{baseurl + business.BusinessPicture}}" err-src="images/events.png" width="255px" height="160px"/>
+                    <img class="avatar img-circle" ng-src="{{baseurl + business.account.UserPicture}}" err-src="images/empty-avatar.png" />
+                    <div class="label_container">
+                        <ul class="rating">
+                            <li ng-repeat="i in items | limitTo: business.ratingNum" >
+                                <img class="thumb" src="images/fullstar.png" alt="">
+                            </li>
+                            <li ng-repeat="i in items | limitTo: 5 - business.ratingNum">
+                                <img class="thumb" src="images/emptystar.png" alt="">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="event_description" style="height: 180px;overflow: hidden"> 
+                        <ul>
+                            <li><img src="images/pin.png" alt=""> {{business.Address}}</li>
+                        </ul>
+
+                        <p class="title">{{business.Name}}</p>
+                        <p>{{business.Description}}</p>
+                    </div> 
+                    </a>
+                    <div class="response">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 share" ng-click="openShareModal(weburl + $state.href('Main.Business.Detail.Info', {id: business.id}), 'Share This Service')">
+                            Share
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 rspv" ng-class="{ disableButton: business.ownBusiness }" ng-click="saveBussiness($index, business)">
+                            {{business.buttonValue}}
+                        </div>
+                        </a>
+                        <div class="clear"></div>
+                    </div>
+                </div>  
+                </div>
+            </div>
+            </div>
+            <div class="clear"></div>
+            <form id="eventsForm">
+                <button class="search_event load_events" ng-click="show(2)">LOAD MORE</button>
+            </form>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>

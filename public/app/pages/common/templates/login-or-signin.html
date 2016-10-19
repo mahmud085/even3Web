@@ -1,0 +1,27 @@
+<div cg-busy="{promise:signupPromise,message:'Loading....',delay:300,minDuration:700}" class="signup-container" style="position:fixed;">
+    <section class="signup-account for-choice">
+        <div class="form-container">
+            <div class="pull-right">
+                <span class="popup-close" ng-click="close()">x<span>
+            </div>
+            <div class="form-body">
+                <h4>{{title}}</h4>
+                <div id="social-list">
+                    <img class="btn-img btn" src="images/facebook-sign.png" alt="" ng-click="FBLogin()" />
+                    <google-plus-signin clientid="389760997134-958hp3jrnartcnt4l25api3fgl6rjc5b" autorender="false" customtargetid="my-custom-element">
+                        <div id="my-custom-element"><img class="btn-img btn" src="images/google-sign.png" alt="" ng-click="GoogleLogin()" /></div>
+                    </google-plus-signin>
+                </div>
+                <p class="line-through"><span>or</span></p>
+                <div class="signup-form for-choice">
+                    <div class="input-container col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <input type="button" id="submit" name="submit" value="SIGN UP" ng-click="goToSignup()" />
+                    </div>
+                    <div class="input-container col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <input type="button" id="submit" name="submit" value="LOGIN" ng-click="goToLogin()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

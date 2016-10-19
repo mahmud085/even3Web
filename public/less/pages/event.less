@@ -1,0 +1,65 @@
+.page.page_event {
+
+  .page__header {
+    padding-bottom: 25px;
+  }
+
+  .page__header-preview {
+    margin-bottom: 15px;
+  }
+
+  .page__header-attendance,
+  .page__header-price {
+    margin-top: 15px;
+  }
+
+  .page__header-toolbar {
+    display: block;
+    margin-top: 15px;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .page__header-location > .event-location iframe {
+    height: 250px;
+  }
+
+  .page__toolbar {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .page__weather {
+    margin-top: 25px;
+  }
+
+  .mobile-card {
+    display: none;
+  }
+
+  .desktop-card {
+    display: block;
+  }
+
+  @media screen and (max-width: 767px) {
+     .mobile-card {
+        display: block;
+      }
+
+      .desktop-card {
+        display: none;
+      }
+  }
+}
+
+@import "../components/event-preview";
+@import "../components/event-location";
+@import "../components/event-price";
+@import "../components/event-attendance";
+@import "../components/event-toolbar";
+@import "../components/event-weather";

@@ -1,0 +1,41 @@
+    <div cg-busy="loginPromise">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	       <button type="button" id="modal_close" class="close" style="display:none;" data-dismiss="modal" aria-label="Close"></button>
+	       <img src="images/close.png" id="close_image" alt="" ng-click="cancel()" />
+	       <div id="popup">	
+				<div id="login">
+					<p id="login_title">Log In</p>
+					<p id="login_signup">No account yet? <span ng-click="goto('Main.Signup')" style="color:#682079;">Sign Up!</span></p>
+				</div>
+                
+				<div id="buttons">
+					<div class="input_container">
+						<img src="images/username.jpg" width="39" height="40" class="form_image" alt="" /> 
+                        <input type="text" class="text_filed" placeholder="Email" ng-model="user.email" required ng-keyup="keyUp($event)"/>
+					</div>	
+					<div class="separator"></div>
+					<div class="input_container">
+						<img src="images/password.jpg" width="39" height="40" class="form_image" alt="" /> 
+                        <input type="password" class="text_filed" placeholder="Password" ng-model="user.password" required ng-keyup="keyUp($event)"/>
+						<div id="forgot_password"><a href="" ng-click="goto('Main.ForgotPassword')">Forgot password?</a></div>
+					</div>	
+					<div class="separator"></div>
+					<input type="button" id="login_button" value="LOGIN" ng-click="login(user)">
+                    <div ng-show="err" class="alert alert-danger">
+                        <strong>Login Failed!</strong> {{errMsg}}
+                    </div>
+					<hr><div id="or_button">OR</div><hr> 
+					<div class="separator"></div>
+				</div>
+				<div id="social_media">
+					<img class="btn" src="images/facebook.png" alt="" ng-click="FBLogin()"/>
+				    <google-plus-signin clientid="389760997134-958hp3jrnartcnt4l25api3fgl6rjc5b" autorender="false" customtargetid="my-custom-element">
+                        <div id="my-custom-element"><img class="btn" src="images/google.png" alt="" ng-click="GoogleLogin()"/></div>
+                    </google-plus-signin>
+				</div>
+			</div>
+		
+	    </div>
+    </div>
+        

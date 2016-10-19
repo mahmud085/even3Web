@@ -1,0 +1,24 @@
+<section class="nwl_section subscriber">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div cg-busy="nwlPromise">
+                    <div class="nwl_sub">
+                        <form id="nwlSubscribe">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <p>Subscribe to news</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 nwl_form_container">
+                                <input type="email" id="email" name="email" placeholder="Your email address" ng-model="email"/>
+                                <button class="subscribe" name="search_action" ng-click="subscribe()">Subscribe</button>
+                            </div>	
+                            <div class="clear"></div>			
+                        </form>
+                    </div>
+                </div>		    		      
+		    </div>
+		</div>  
+        <div class="alert alert-success" ng-show="showMsg" style="margin-top:75px; text-align:center; width:44em; margin-left:24em;">
+            You have been added to the subscribers list !!
+        </div>
+	</section>
+    

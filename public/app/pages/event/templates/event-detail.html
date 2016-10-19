@@ -1,0 +1,315 @@
+<section class="page page_event">
+    <div cg-busy="eventDetailPromise">
+        <header class="page__header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 page__header-preview">
+                        <section class="event-preview">
+                            <article>
+                                <img class="event-preview__img"
+                                     ng-src="{{baseurl + eventDetail.EventPicture}}"
+                                     err-src="images/events.png"/>
+                                <div class="event-preview__info-box media">
+                                    <div class="event-preview__contact media-left">
+                                        <img class="event-preview__contact-img avatar img-circle"
+                                             ng-src="{{baseurl + eventDetail.account.UserPicture}}"
+                                             err-src="images/empty-avatar.png"/>
+                                        <p>CONTACT</p>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="event-preview__title">{{eventDetail.Name}}</p>
+                                        <p class="event-preview__location">
+                                            <img src="images/pin.png" alt="">
+                                            <span class="event-preview__location-text">{{eventDetail.Address}}</span>
+                                        </p>
+                                        <p class="event-preview__date">
+                                            <img src="images/date.png" alt="">
+                                            <span class="event-preview__date-text">{{eventDetail.StartDate | date}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 page__header-price mobile-card">
+                        <section class="event-price price_contact">
+                            <h4>Price</h4>
+
+                            <form id="hireForm" ng-if="!eventDetail.tickets.length">
+                                <input type="submit" id="submit" name="submit" value="FREE" class="event-price__pay" />
+                            </form>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-condensed" ng-if="eventDetail.tickets.length">
+                                    <thead>
+                                        <tr>
+                                            <th>Price</th>
+                                            <th>Available</th>
+                                            <th>Sold</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="ticket in eventDetail.tickets">
+                                            <td>{{ ticket.currencySymbol}} {{ticket.Price | number:2}}</td>
+                                            <td>{{ticket.Available}}</td>
+                                            <td>{{ticket.SoldTicket}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 page__header-attendance mobile-card" ng-show="showRSVP">
+                        <section cg-busy="rsvpPromise" class="event-attendance">
+                            <div class="event-attendance__row">
+                                <div class="event-attendance__option"
+                                     ng-class="{ 'event-attendance__option_active' : going }"
+                                     ng-click="setRSVP(2)">
+                                    Going
+                                </div>
+                                <div class="event-attendance__option"
+                                     ng-class="{ 'event-attendance__option_active' : maybe }"
+                                     ng-click="setRSVP(2)">
+                                    Maybe
+                                </div>
+                                <div class="event-attendance__option"
+                                     ng-class="{ 'event-attendance__option_active' : ignore }"
+                                     ng-click="setRSVP(1)">
+                                    Ignore
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 event_sidebar mobile-card">
+                        <div class="page__toolbar">
+                            <section class="event-toolbar" ng-show="ownEvent">
+                                <div class="event-toolbar__row">
+                                    <div class="event-toolbar__action">
+                                        <form>
+                                            <a ui-sref="Main.Event.Detail.Edit({id: eventId})">
+                                                <input type="submit" name="submit" value="EDIT"
+                                                       class="event-toolbar__btn event-toolbar__btn_edit"/>
+                                            </a>
+                                        </form>
+                                    </div>
+                                    <div class="event-toolbar__action">
+                                        <form>
+                                            <input type="submit" name="submit" value="DELETE"
+                                                   class="event-toolbar__btn event-toolbar__btn_delete"
+                                                   ng-click="deleteEvent()"/>
+                                        </form>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="page__weather">
+                            <section class="event-weather">
+                                <h4 class="event-weather__header-title">Weather</h4>
+                                <div class="event-weather__info row">
+                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center">
+                                        <img class="img-circle" ng-src="{{weatherIcon}}" width="60px" height="60px">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-center">
+                                        <span>{{weather.currently.summary}}</span>
+                                        <span><h3>{{temperature | number:2}}&deg C</h3></span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 page__header-location">
+                        <section class="event-location">
+                            <h4>When & Where</h4>
+                            <iframe width="100%" frameborder="0" style="border:0" ng-src="{{geoSrc}}" allowfullscreen>
+                            </iframe>
+
+                            <p class="event-location__date">{{eventDetail.StartDate | date: 'EEEE'}},
+                                {{eventDetail.StartDate | date}}
+                                from
+                                {{eventDetail.StartDate | date:'shortTime' }}
+                            </p>
+                        </section>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 page__header-price desktop-card">
+                        <section class="event-price price_contact">
+                            <h4>Price</h4>
+
+                            <form id="hireForm" ng-if="!eventDetail.tickets.length">
+                                <input type="submit" id="submit" name="submit" value="FREE" class="event-price__pay"/>
+                            </form>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-condensed" ng-if="eventDetail.tickets.length">
+                                    <thead>
+                                    <tr>
+                                        <th>Price</th>
+                                        <th>Available</th>
+                                        <th>Sold</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="ticket in eventDetail.tickets">
+                                        <td>{{ ticket.currencySymbol}} {{ticket.Price | number:2}}</td>
+                                        <td>{{ticket.Available}}</td>
+                                        <td>{{ticket.SoldTicket}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 page__header-attendance desktop-card" ng-show="showRSVP">
+                        <section cg-busy="rsvpPromise" class="event-attendance">
+                            <div class="event-attendance__row">
+                                <div class="event-attendance__option"
+                                     ng-class="{ 'event-attendance__option_active' : going }"
+                                     ng-click="setRSVP(2)">
+                                    Going
+                                </div>
+                                <div class="event-attendance__option"
+                                     ng-class="{ 'event-attendance__option_active' : maybe }"
+                                     ng-click="setRSVP(2)">
+                                    Maybe
+                                </div>
+                                <div class="event-attendance__option"
+                                     ng-class="{ 'event-attendance__option_active' : ignore }"
+                                     ng-click="setRSVP(1)">
+                                    Ignore
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xs-12 page__header-toolbar">
+                        <section class="event-toolbar" ng-show="ownEvent">
+                            <div class="event-toolbar__row">
+                                <div class="event-toolbar__action">
+                                    <form>
+                                        <a ui-sref="Main.Event.Detail.Edit({id: eventId})">
+                                            <input type="submit" name="submit" value="EDIT"
+                                                   class="event-toolbar__btn event-toolbar__btn_edit"/>
+                                        </a>
+                                    </form>
+                                </div>
+                                <div class="event-toolbar__action">
+                                    <form>
+                                        <input type="submit" name="submit" value="DELETE"
+                                               class="event-toolbar__btn event-toolbar__btn_delete"
+                                               ng-click="deleteEvent()"/>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <article class="page_body event_container">
+            <div class="container">
+                <div class="row event_details">
+                    <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                        <div class="description">
+                            <h4>Description</h4>
+                            <p>{{eventDetail.Description}}</p>
+                        </div>
+                        <div class="page__agenda">
+                            <h4>Schedule</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 event_sidebar desktop-card">
+                        <div class="page__toolbar">
+                            <section class="event-toolbar" ng-show="ownEvent">
+                                <div class="event-toolbar__row">
+                                    <div class="event-toolbar__action">
+                                        <form>
+                                            <a ui-sref="Main.Event.Detail.Edit({id: eventId})">
+                                                <input type="submit" name="submit" value="EDIT"
+                                                       class="event-toolbar__btn event-toolbar__btn_edit"/>
+                                            </a>
+                                        </form>
+                                    </div>
+                                    <div class="event-toolbar__action">
+                                        <form>
+                                            <input type="submit" name="submit" value="DELETE"
+                                                   class="event-toolbar__btn event-toolbar__btn_delete"
+                                                   ng-click="deleteEvent()"/>
+                                        </form>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="page__weather">
+                            <section class="event-weather">
+                                <h4 class="event-weather__header-title">Weather</h4>
+                                <div class="event-weather__info row">
+                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center">
+                                        <img class="img-circle" ng-src="{{weatherIcon}}" width="60px" height="60px">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-center">
+                                        <span>{{weather.currently.summary}}</span>
+                                        <span><h3>{{temperature | number:2}}&deg C</h3></span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="page__comments comments">
+                            <h4>Comments ({{commentList.length}})</h4>
+
+                            <div class="comment" ng-show="loggedIn">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                    <img class="thumb img-circle" ng-src="{{baseurl + userAccInfo.UserPicture}}"
+                                         err-src="images/empty-avatar.png" alt="">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                    <div class="post_comment">
+                                        <form id="commentForm" action="">
+                                            <textarea placeholder="Write your text here"
+                                                      ng-model="CommentBody"></textarea>
+                                            <input type="button" class="submit_comment" name="submit"
+                                                   value="Submit Comment"
+                                                   ng-click="addComment(CommentBody)"/>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="noMatch" ng-hide="commentList.length">
+                                <Span><h3>No Comments to Show</h3></Span>
+                            </div>
+                            <div ng-show="commentList.length" ng-repeat="comment in commentList">
+                                <div class="comment row" ng-show="commentList.length">
+                                    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                                        <img class="comment__thumbnail thumb img-circle"
+                                             ng-src="{{baseurl + comment.account.UserPicture}}"
+                                             err-src="images/empty-avatar.png" alt=""/>
+                                    </div>
+                                    <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                                        <div class="posted_comment">
+                                            <p>
+                                                <span class="comment__author name">{{comment.account.username}}</span> -
+                                                <span class="time">{{comment.Time | date}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10">
+                                        <div class="comment__message-box posted_comment">
+                                            <p class="text">{{comment.CommentBody}}</p>
+                                            <ul class="actions">
+                                                <li><img src="images/reply.png" alt="">Reply</li>
+                                                <!--<li><img src="images/agree.png" alt="">Agree</li>
+                                                <li><img src="images/disagree.png" alt="">Disagree</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

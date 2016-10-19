@@ -1,0 +1,26 @@
+<ul class="nav nav-pills nav-stacked nav-desctop">
+    <li><a data-toggle="tab" data-target="#profile" ui-sref="Main.Profile.Info" 
+        ng-class="{ activeItem: isActive('Main.Profile.Info') }" >Profile</a></li>
+    <li><a data-toggle="tab" data-target="#event" ui-sref="Main.Profile.Event"
+        ng-class="{ activeItem: isActive('Main.Profile.Event') }">Events</a></li>
+    <li><a data-toggle="tab" data-target="#service" ui-sref="Main.Profile.Service"
+        ng-class="{ activeItem: isActive('Main.Profile.Service') }">Services</a></li>
+    <li><a data-toggle="tab" data-target="#interest" ui-sref="Main.Profile.Interest"
+        ng-class="{ activeItem: isActive('Main.Profile.Interest') }">Interests</a></li>
+    <li><a data-toggle="tab" data-target="#ticket" ui-sref="Main.Profile.Ticket"
+        ng-class="{ activeItem: isActive('Main.Profile.Ticket') }">Tickets</a></li>
+    <li><a data-toggle="tab" data-target="#paymentMethod" ui-sref="Main.Profile.PaymentMethod"
+        ng-class="{ activeItem: isActive('Main.Profile.PaymentMethod') }">Payment Method</a></li>        
+    <!--<li><a data-toggle="tab" data-target="#history" ui-sref="Main.Profile.History"
+        ng-class="{ activeItem: isActive('Main.Profile.History') }">History</a></li>-->
+    <li><a ng-class="{ activeItem: false }">History</a></li>
+</ul>
+<select ng-model="tabState" ng-change="goToState()" class="nav nav-pills nav-stacked nav-mobile selectpicker show-menu-arrow">
+  <option value="Info">Profile</option>
+  <option value="Event">Events</option>
+  <option value="Service">Services</option>
+  <option value="Interest">Interests</option>
+  <option value="Ticket">Tickets</option>
+  <option value="PaymentMethod">Payment Method</option>
+  <option value="History" disabled>History</option>
+</select>
